@@ -81,29 +81,141 @@
 
 .user-nav{
     background-color: yellowgreen;
-    &__icon-box{
+    align-self: stretch; //permite que los items no esten aliniados al centro, como en la confg inicial y tomen todo el ancho del contenedor 
 
+
+    display: flex;
+    align-items: center;
+
+    //seelcciona todos los hijos directos.
+    & > * {
+        padding: 0 2rem;
+        cursor: pointer;
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+    & > *:hover {
+        background-color: var(--color-grey-light-2);
+    }
+
+    &__icon-box{
+        // display: flex;
+        // align-items: center;
+        position: relative;
     }
 
     &__icon{
         height: 2.25rem;
         width: 2.25rem;
+        fill: var(--color-grey-dark-2);
+        
     }
 
     &__notification{
+        font-size: .8rem;
+        height: 1.75rem;
+        width: 1.75rem;
+        border-radius: 50%;
+        background-color: var(--color-primary);
+        color: #fff;
+        position: absolute;
+        top: 1.5rem;
+        right: 1.1rem;
 
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
-    &__user{
-
-    }
 
     &__user-photo{
         height: 3.75rem;
         border-radius: 50%;
+        margin-right: 1rem;
     }
 
-    &__user-name{
+    
+}
+
+
+
+//////////////////////////////////////
+//SIDE NAVIGATION.
+
+
+.side-nav{
+    font-size: 1.4rem;
+    list-style: none;
+    margin-top: 3.5rem;
+
+    &__item{
+        position: relative;
+
+        &:not(:last-child){
+            margin-bottom: .5rem;
+        }
+
+        transition: all .2s;
+    }
+
+    &__item::before{
+        content: ""; //espesifica el contenido
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 5px;
+        background-color: var(--color-primary) ;
+        transform: scaleY(0); // se puede configurar para que no inice desde el centro, sino en otra posicion
+        //define el tiempo en el que algo se hace sea el transform o otras cosas que pasan en la accion posterior.
+        transition: transform .2s,
+                    width .4s cubic-bezier(1,0,0,1) .2s ;
+                    //espera 4 s para iniciar, comineza lento y acelera, lo hace todo en 2 segundos
+    }
+
+    &__item:hover::before{
+        transform: scaleY(1);
+        width: 100%;
+    }
+
+    &__link:link,
+    &__link:visited{
+        color: var(--color-grey-light-1);
+        text-decoration: none;
+        text-transform: uppercase;
+        display: block;
+        padding: 1.5rem 3rem;
+        position: relative;
+        //solo funciona si tenemos una posicion especificada.
+        z-index: 10;
+
+        display: flex;
+        align-items: center;
 
     }
+
+    // &__link:hover{
+    //     color: tomato;
+    // }
+
+    &__icon{
+        width: 1.75rem;
+        height: 1.75rem;
+        margin-right: 2rem;
+        fill: currentColor; //Color actual. del elemento padre
+    }
+
+}
+
+
+//////////////////////////////////////
+//LEGAL TEXT.
+
+.legal{
+    font-size: 1.2rem;
+    color: var(--color-grey-light-4);
+    text-align: center;
+    padding: 2.5rem;
 }
