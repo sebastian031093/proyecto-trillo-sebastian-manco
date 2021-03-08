@@ -29,6 +29,15 @@ COLORS
     --line: 1px solid var(--color-grey-light-2);
 }
 
+//las variables css no funcionan muy bien con las media queris, asi que 
+//usaremos varibles sass.
+// bp= breack point
+$bp-largest: 75rem;   //1200px
+$bp-large: 68.75rem;  //1100px
+$bp-medium: 56.25rem; //900px
+$bp-small: 37.5rem;   //600px
+$bp-smallest: 31.25rem;  //500px
+
 *{
     margin: 0;
     padding: 0;
@@ -45,6 +54,10 @@ COLORS
 html{
     box-sizing: border-box;
     font-size: 62.5%; //1rem = 10px, 10px/16px = 62.5%
+
+    @media only screen and (max-width:$bp-large){
+        font-size: 50%;
+    }
 }
 
 body{
